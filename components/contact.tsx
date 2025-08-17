@@ -1,22 +1,22 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function Contact() {
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
       title: "Email",
-      value: "t3w4e0rdaf6f@opayq.com",
-      link: "mailto:t3w4e0rdaf6f@opayq.com",
+      value: "imadanbhat@gmail.com",
+      link: "mailto:imadanbhat@gmail.com",
     },
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: "Location",
-      value: "Kathmandu, Nepal",
-      link: "https://maps.google.com/?q=Kathmandu,Nepal",
+      value: "Udupi, Karnataka, India",
+      link: "https://maps.google.com/?q=Udupi,Karnataka,India",
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
@@ -24,7 +24,7 @@ export default function Contact() {
       value: "Available on request",
       link: null,
     },
-  ]
+  ];
 
   return (
     <div className="w-full bg-muted/30">
@@ -32,9 +32,12 @@ export default function Contact() {
         <div className="container px-4 md:px-6 mx-auto">
           <div className="space-y-12">
             <div className="space-y-4 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get In Touch</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                Get In Touch
+              </h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+                Have a project in mind or want to discuss opportunities? I'd
+                love to hear from you!
               </p>
             </div>
 
@@ -42,29 +45,58 @@ export default function Contact() {
               <div className="lg:col-span-2">
                 <Card>
                   <CardContent className="p-6">
-                    <form action="https://formspree.io/f/xanoenzo" method="POST" className="space-y-6">
+                    <form
+                      action="https://formspree.io/f/xanoenzo"
+                      method="POST"
+                      className="space-y-6"
+                    >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <label htmlFor="name" className="text-sm font-medium">
                             Name
                           </label>
-                          <Input id="name" name="name" placeholder="Your name" required />
+                          <Input
+                            id="name"
+                            name="name"
+                            placeholder="Your name"
+                            required
+                          />
                         </div>
                         <div className="space-y-2">
-                          <label htmlFor="email" className="text-sm font-medium">
+                          <label
+                            htmlFor="email"
+                            className="text-sm font-medium"
+                          >
                             Email
                           </label>
-                          <Input id="email" name="email" type="email" placeholder="Your email" required />
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Your email"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="subject" className="text-sm font-medium">
+                        <label
+                          htmlFor="subject"
+                          className="text-sm font-medium"
+                        >
                           Subject
                         </label>
-                        <Input id="subject" name="subject" placeholder="Subject of your message" required />
+                        <Input
+                          id="subject"
+                          name="subject"
+                          placeholder="Subject of your message"
+                          required
+                        />
                       </div>
                       <div className="space-y-2">
-                        <label htmlFor="message" className="text-sm font-medium">
+                        <label
+                          htmlFor="message"
+                          className="text-sm font-medium"
+                        >
                           Message
                         </label>
                         <Textarea
@@ -80,7 +112,8 @@ export default function Contact() {
                       </Button>
                       <noscript>
                         <p className="text-sm text-center text-muted-foreground mt-2">
-                          Please enable JavaScript to use the form, or email me directly.
+                          Please enable JavaScript to use the form, or email me
+                          directly.
                         </p>
                       </noscript>
                     </form>
@@ -92,15 +125,23 @@ export default function Contact() {
                 {contactInfo.map((info, index) => (
                   <Card key={index} className="overflow-hidden">
                     <CardContent className="p-6 flex items-start gap-4">
-                      <div className="bg-primary/10 p-3 rounded-full mt-1">{info.icon}</div>
+                      <div className="bg-primary/10 p-3 rounded-full mt-1">
+                        {info.icon}
+                      </div>
                       <div>
                         <h3 className="font-medium">{info.title}</h3>
                         {info.link ? (
                           <a
                             href={info.link}
                             className="text-muted-foreground hover:text-primary transition-colors"
-                            target={info.title === "Location" ? "_blank" : undefined}
-                            rel={info.title === "Location" ? "noopener noreferrer" : undefined}
+                            target={
+                              info.title === "Location" ? "_blank" : undefined
+                            }
+                            rel={
+                              info.title === "Location"
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
                           >
                             {info.value}
                           </a>
@@ -115,10 +156,16 @@ export default function Contact() {
                 <Card>
                   <CardContent className="p-6">
                     <h3 className="font-medium mb-2">Connect with me</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Find me on these platforms</p>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Find me on these platforms
+                    </p>
                     <div className="flex gap-4">
                       <Button variant="outline" size="icon" asChild>
-                        <a href="https://github.com/maskeynihal" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://github.com/Madan-bhat"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -138,7 +185,11 @@ export default function Contact() {
                         </a>
                       </Button>
                       <Button variant="outline" size="icon" asChild>
-                        <a href="https://linkedin.com/in/maskeynihal" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://linkedin.com/in/madan-bhat-b1539a336"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -172,7 +223,13 @@ export default function Contact() {
                             strokeLinejoin="round"
                             className="h-5 w-5"
                           >
-                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <rect
+                              width="20"
+                              height="16"
+                              x="2"
+                              y="4"
+                              rx="2"
+                            ></rect>
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                           </svg>
                           <span className="sr-only">Email</span>
@@ -187,5 +244,5 @@ export default function Contact() {
         </div>
       </section>
     </div>
-  )
+  );
 }

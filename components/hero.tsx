@@ -1,12 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowUpCircle, Github, Linkedin, Mail } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { ArrowUpCircle, Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section id="home" className="py-20 md:py-32 flex flex-col items-center justify-center min-h-[90vh]">
+    <section
+      id="home"
+      className="py-20 md:py-32 flex flex-col items-center justify-center min-h-[90vh]"
+    >
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2">
@@ -18,14 +21,17 @@ export default function Hero() {
                 <span>Frontend Developer</span>
               </span>
               <noscript>
-                <span>Frontend Developer | React Specialist | TypeScript Expert | React Native Developer</span>
+                <span>
+                  Frontend Developer | React Specialist | TypeScript Expert |
+                  React Native Developer
+                </span>
               </noscript>
             </p>
           </div>
           <div className="max-w-[700px] text-muted-foreground">
             <p className="text-lg">
-              18 year old beginner software developer passionate about coding and turning complex problems into simple,
-              beautiful designs
+              18 year old beginner software developer passionate about coding
+              and turning complex problems into simple, beautiful designs
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mt-6">
@@ -35,13 +41,21 @@ export default function Hero() {
           </div>
           <div className="flex gap-4 mt-6">
             <Button variant="ghost" size="icon" asChild>
-              <Link href="https://github.com/Madan-Bhat" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://github.com/Madan-Bhat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
             <Button variant="ghost" size="icon" asChild>
-              <Link href="https://linkedin.com/in/madanbhat" target="_blank" rel="noopener noreferrer">
+              <Link
+                href="https://linkedin.com/in/madan-bhat-b1539a336"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
@@ -58,8 +72,8 @@ export default function Hero() {
           <Link
             href="#"
             onClick={(e) => {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: "smooth" })
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
             <ArrowUpCircle className="h-10 w-10 text-primary animate-bounce" />
@@ -67,5 +81,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
