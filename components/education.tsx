@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { GraduationCap } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap } from "lucide-react";
 
 export default function Education() {
   return (
@@ -7,7 +7,9 @@ export default function Education() {
       <div className="container px-4 md:px-6 mx-auto">
         <div className="space-y-12">
           <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Education</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Education
+            </h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               My academic background and qualifications
             </p>
@@ -21,16 +23,23 @@ export default function Education() {
                     <GraduationCap className="h-8 w-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">Bachelor of Engineering: Computer Engineering</h3>
-                    <p className="text-muted-foreground">MIT (Manipal Institute of Technology) (2021)</p>
+                    <h3 className="text-xl font-bold">
+                      Bachelor of Engineering: Computer Engineering
+                    </h3>
+                    <p className="text-muted-foreground">
+                      MIT (Manipal Institute of Technology) (2021)
+                    </p>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground">
-                    Completed a comprehensive computer engineering program at Manipal Institute of Technology with a
-                    focus on software development, algorithms, data structures, and system design. Gained a strong
-                    foundation in computer science principles and engineering practices that have been instrumental in
-                    my professional career.
+                    Completed a comprehensive Electrical and Electronics
+                    Engineering (EEE) program at Manipal Institute of Technology
+                    with a focus on software development, algorithms, data
+                    structures, and system design. Gained a strong foundation in
+                    electrical and electronics engineering principles and
+                    engineering practices that have been instrumental in my
+                    professional career.
                   </p>
                 </div>
               </CardContent>
@@ -39,5 +48,5 @@ export default function Education() {
         </div>
       </div>
     </section>
-  )
+  );
 }
