@@ -27,7 +27,7 @@ export default function Education() {
                       Bachelor of Engineering: Computer Engineering
                     </h3>
                     <p className="text-muted-foreground">
-                      MIT (Manipal Institute of Technology) (2021)
+                      MIT (Manipal Institute of Technology) (2025)
                     </p>
                   </div>
                 </div>
