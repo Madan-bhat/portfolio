@@ -33,13 +33,10 @@ export default function Education() {
                 </div>
                 <div className="p-6">
                   <p className="text-muted-foreground">
-                    Completed a comprehensive Electrical and Electronics
-                    Engineering (EEE) program at Manipal Institute of Technology
-                    with a focus on software development, algorithms, data
-                    structures, and system design. Gained a strong foundation in
-                    electrical and electronics engineering principles and
-                    engineering practices that have been instrumental in my
-                    professional career.
+                    Pursuing a comprehensive Electrical Engineering (EE) program
+                    at Manipal Institute of Technology, building a strong
+                    foundation in electrical engineering principles, systems,
+                    and design.
                   </p>
                 </div>
               </CardContent>
