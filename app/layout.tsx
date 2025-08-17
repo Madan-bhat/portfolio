@@ -1,16 +1,16 @@
-import type React from "react"
-import type { Metadata } from "next"
-import "./globals.css"
-import { Analytics } from "@/components/analytics"
-import ClientLayout from "./client"
-import { Suspense } from "react"
+import type React from "react";
+import type { Metadata } from "next";
+import "./globals.css";
+import { Analytics } from "@/components/analytics";
+import ClientLayout from "./client";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Nihal Maskey | Senior Software Engineer",
+  title: "Madan Bhat | Junior Software Engineer",
   description:
-    "Portfolio of Nihal Maskey, a Senior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
+    "Portfolio of Madan Bhat, a Junior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
   keywords: [
-    "Nihal Maskey",
+    "Madan Bhat",
     "Software Engineer",
     "Full Stack Developer",
     "JavaScript",
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     "Node.js",
     "AWS",
   ],
-  authors: [{ name: "Nihal Maskey" }],
-  creator: "Nihal Maskey",
+  authors: [{ name: "Madan Bhat" }],
+  creator: "Madan Bhat",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -31,39 +31,39 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nihalmaskey.com",
-    title: "Nihal Maskey | Senior Software Engineer",
+    url: "https://imadanbhat.vercel.app",
+    title: "Madan Bhat | Junior Software Engineer",
     description:
-      "Portfolio of Nihal Maskey, a Senior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
-    siteName: "Nihal Maskey Portfolio",
+      "Portfolio of Madan Bhat, a Junior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
+    siteName: "Madan Bhat Portfolio",
     images: [
       {
         url: "/favicon.png",
         width: 512,
         height: 512,
-        alt: "Nihal Maskey Logo",
+        alt: "Madan Bhat Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nihal Maskey | Senior Software Engineer",
+    title: "Madan Bhat | Junior Software Engineer",
     description:
-      "Portfolio of Nihal Maskey, a Senior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
-    creator: "@maskeynihal",
+      "Portfolio of Madan Bhat, a Junior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
+    creator: "@imadanbhat",
     images: ["/favicon.png"],
   },
   robots: {
     index: true,
     follow: true,
   },
-    generator: 'v0.app'
-}
+  generator: "v0.app",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <>
@@ -72,5 +72,5 @@ export default function RootLayout({
       </Suspense>
       <Analytics />
     </>
-  )
+  );
 }
