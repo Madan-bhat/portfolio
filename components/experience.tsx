@@ -5,78 +5,39 @@ import Skills from "./skills-content"
 export default function Experience() {
   const experiences = [
     {
-      title: "Lead Engineer",
-      company: "Leapfrog Technology / Trayt Health",
-      period: "Jan 2025 - Present",
-      location: "Kathmandu, Nepal",
+      title: "Fullstack Web & App Developer",
+      company: "GENESII",
+      period: "2023 - 2026",
+      location: "Remote / Udupi, IN",
       achievements: [
-        "Leading the engineering team in developing innovative healthcare solutions for Trayt Health",
-        "Architecting scalable and secure systems for handling sensitive healthcare data",
-        "Implementing advanced AWS infrastructure for high availability and compliance",
-        "Mentoring junior engineers and establishing best practices for code quality and security",
-        "Collaborating with product and design teams to deliver exceptional user experiences",
+        "Architected and deployed 'Gyanasetu', a comprehensive school management platform with real-time tracking",
+        "Developed 'Unilink', a high-performance cross-platform chat application using React Native and Firebase",
+        "Optimized system performance by 40% through rigorous code refactoring and database indexing",
+        "Integrated complex authentication protocols and real-time data synchronization layers",
       ],
     },
     {
-      title: "Senior Software Engineer",
-      company: "Leapfrog Technology / Trayt Health",
-      period: "July 2023 - Jan 2025",
-      location: "Kathmandu, Nepal",
+      title: "Multiple Deployments (Internships)",
+      company: "VARIOUS",
+      period: "2021 - 2023",
+      location: "Hybrid",
       achievements: [
-        "Coordinated development efforts with remote teams across the US, Australia, and Nepal to deliver complex healthcare solutions for Trayt Health",
-        "Reduced the frontend bundle size by 20% through advanced optimization techniques",
-        "Optimized backend API performance, achieving over 200% faster response times",
-        "Leveraged AWS services (SQS, EventBridge, Lambda, Step Functions) to automate critical tasks",
-        "Mentored and coached team members, accelerating onboarding and enhancing team productivity",
+        "Spearheaded 3+ month intensive deployments focused on mobile and web architecture",
+        "Designed and implemented path-finding algorithms in vanilla JS for educational gaming simulations",
+        "Collaborated with senior engineers to bridge hardware logic with digital interfaces",
+        "Mastered the 'Continuous Integration' pipeline for rapid feature deployment",
       ],
     },
     {
-      title: "Software Engineer",
-      company: "Leapfrog Technology",
-      period: "Sep 2021 - July 2023",
-      location: "Kathmandu, Nepal",
+      title: "Continuous Learning Protocol",
+      company: "TOTAL_RUNTIME",
+      period: "2017 - 2026",
+      location: "Global",
       achievements: [
-        "Led and managed a diverse software development team comprising over 15 members",
-        "Designed and implemented solutions that consistently exceeded performance benchmarks",
-        "Streamlined project planning by working closely with product owners",
-        "Orchestrated the successful release of major application versions",
-        "Emerged as the primary point of contact for both project stakeholders and management",
-      ],
-    },
-    {
-      title: "Associate Software Engineer",
-      company: "Leapfrog Technology",
-      period: "Sep 2020 - Sep 2021",
-      location: "Kathmandu, Nepal",
-      achievements: [
-        "Collaborated with senior developers and product owners to deliver high-quality applications",
-        "Employed a meticulous approach to debugging code and identifying root causes of issues",
-        "Contributed to system improvement efforts by conducting thorough system analysis",
-        "Played a pivotal role in enhancing system performance through strategic optimization",
-        "Innovatively designed and developed a browser extension, streamlining workflow processes",
-      ],
-    },
-    {
-      title: "Software Engineer Intern",
-      company: "Leapfrog Technology",
-      period: "Jun 2020 - Sep 2020",
-      location: "Kathmandu, Nepal",
-      achievements: [
-        "Acquired proficiency in JavaScript and harnessed the browser canvas API",
-        "Recreated Pac-man game with vanilla JS while integrating various path-finding algorithms",
-        "Successfully delved into backend development with Node.js and honed frontend skills with React.js",
-      ],
-    },
-    {
-      title: "Web Application Developer",
-      company: "Technorio Inc.",
-      period: "Jan 2019 - Jun 2020",
-      location: "Kathmandu, Nepal",
-      achievements: [
-        "Delivered projects across diverse industries, including insurance management, video streaming, and ticket management",
-        "Collaborated closely with the business development team, offering engineering insights",
-        "Utilized GitHub actions to automate deployment pipelines",
-        "Applied server deployment expertise to successfully launch a range of web applications",
+        "8+ years of systematic programming exploration across multiple paradigms",
+        "Built a strong foundation in digital logic, circuit analysis, and systems thinking",
+        "Developed 'WordCafe', a modern storytelling platform focusing on visual impact and technical rigor",
+        "Continuously optimizing personal tech stack to include advanced Electrical Engineering principles",
       ],
     },
   ]
@@ -87,9 +48,9 @@ export default function Experience() {
         <div className="space-y-12">
           <div className="section-heading">
             <p>Service Record</p>
-            <h2>Employment_History</h2>
-            <p>
-              Deployment logs and technical contributions across verified environments.
+            <h2>Deployment_History</h2>
+            <p className="uppercase tracking-widest text-xs font-bold text-primary/80">
+              Technical Contributions & System Deployments
             </p>
           </div>
 

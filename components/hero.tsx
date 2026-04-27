@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 export default function Hero() {
   const [typedText, setTypewriter] = useState("");
-  const fullText = "Subject: 18yo Developer // Loc: Udupi, IN // Spec: TypeScript, React, Systems.";
+  const fullText = "Subject: 18yo Electrical Engineer // Loc: Udupi, IN // Spec: Systems, Robotics, TypeScript.";
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -239,17 +239,17 @@ export default function Hero() {
 
       {/* Spotlight Effect - Dark Overlay with Hole */}
       <div
-        className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-40 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, transparent 10%, rgba(0, 0, 0, ${0.85 * flicker}) 80%)`,
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, transparent 10%, rgba(0, 0, 0, ${0.98 * flicker}) 70%)`,
         }}
       />
 
       {/* Red Glow Light Source */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-30 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 51, 51, ${0.12 * flicker}), transparent 70%)`,
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 51, 51, ${0.15 * flicker}), transparent 70%)`,
         }}
       />
     </section>

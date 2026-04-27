@@ -30,8 +30,8 @@ export default function About() {
   const education = [
     {
       school: "MIT (MANIPAL INSTITUTE)",
-      period: "2021-2025",
-      degree: "BACHELOR - Computer Engineering",
+      period: "2025-2029",
+      degree: "BACHELOR - Electrical Engineering",
     },
     {
       school: "ADVANCED LOGIC",
@@ -80,11 +80,11 @@ export default function About() {
             <div className="grid grid-cols-2 gap-4 text-[9px] uppercase tracking-[0.2em] text-zinc-500 font-bold">
               <div className="space-y-1">
                 <p className="text-zinc-600">Class:</p>
-                <p className="text-white">DEV_FULLSTACK</p>
+                <p className="text-white">ENG_ELECTRICAL</p>
               </div>
               <div className="space-y-1">
                 <p className="text-zinc-600">XP_LEVEL:</p>
-                <p className="text-white">JUNIOR_ENG</p>
+                <p className="text-white">UNDERGRAD</p>
               </div>
               <div className="space-y-1">
                 <p className="text-zinc-600">LANG_1:</p>
@@ -126,8 +126,8 @@ export default function About() {
 
             <div className="space-y-6">
               <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed">
-                Hybrid developer obsessed with the fusion of <span className="bg-primary/20 text-white px-2 py-0.5 border-b-2 border-primary italic font-bold">technical rigor</span> and <span className="bg-primary/20 text-white px-2 py-0.5 border-b-2 border-primary italic font-bold">visual impact</span>.
-                I don&apos;t just build websites, I design immersive systems that leave a lasting impression.
+                Electrical Engineering student obsessed with the fusion of <span className="bg-primary/20 text-white px-2 py-0.5 border-b-2 border-primary italic font-bold">hardware systems</span> and <span className="bg-primary/20 text-white px-2 py-0.5 border-b-2 border-primary italic font-bold">high-level code</span>.
+                I bridge the gap between physical circuits and digital logic to build truly immersive experiences.
               </p>
               <div className="h-px w-24 bg-primary/40" />
             </div>

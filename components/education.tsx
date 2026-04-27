@@ -23,10 +23,10 @@ export default function Education() {
               <div className="flex-1 space-y-4">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
                   <h3 className="text-2xl font-black uppercase italic tracking-tighter text-white">
-                    Computer Engineering
+                    Electrical Engineering
                   </h3>
                   <span className="text-[10px] uppercase tracking-[0.2em] border border-primary/30 px-2 py-1 bg-primary/5 text-primary">
-                    Class of 2025
+                    2025 - 2029
                   </span>
                 </div>
 
@@ -38,7 +38,7 @@ export default function Education() {
 
                 <p className="text-xs text-zinc-400 uppercase tracking-widest leading-relaxed">
                   Pursuing a comprehensive engineering program at Manipal Institute of Technology.
-                  Focused on building a strong foundation in computer engineering principles, systems architecture,
+                  Focused on building a strong foundation in Electrical engineering principles, systems architecture,
                   and digital design logic.
                 </p>
 
