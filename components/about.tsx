@@ -8,22 +8,16 @@ export default function About() {
 
   const experience = [
     {
-      title: "Fullstack Web & App Developer",
-      company: "GENESII",
-      period: "2023-2026",
-      label: "3 YEARS ACTIVE DUTY"
+      title: "Several Freelancings",
+      company: "Independent",
+      period: "2021-2026",
+      label: "DEPLOYMENTS"
     },
     {
-      title: "Multiple Deployments",
-      company: "VARIOUS",
-      period: "2021-2023",
-      label: "INTERNSHIPS (3+ MONTHS)"
-    },
-    {
-      title: "Continuous Learning Protocol",
-      company: "TOTAL_RUNTIME",
-      period: "2017-2026",
-      label: "8 YEARS PROGRAMMING"
+      title: "Good at programming and mobile dev",
+      company: "Skillset",
+      period: "Active",
+      label: "EXPERTISE"
     }
   ]
 
@@ -32,11 +26,6 @@ export default function About() {
       school: "MIT (MANIPAL INSTITUTE)",
       period: "2025-2029",
       degree: "BACHELOR - Electrical Engineering",
-    },
-    {
-      school: "ADVANCED LOGIC",
-      period: "2019-2021",
-      degree: "HIGHER SECONDARY - Science & Math",
     }
   ]
 
