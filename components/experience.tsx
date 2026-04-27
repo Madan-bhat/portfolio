@@ -5,39 +5,23 @@ import Skills from "./skills-content"
 export default function Experience() {
   const experiences = [
     {
-      title: "Fullstack Web & App Developer",
-      company: "GENESII",
-      period: "2023 - 2026",
-      location: "Remote / Udupi, IN",
+      title: "Several Freelancings",
+      company: "Independent",
+      period: "2021 - 2026",
+      location: "Remote / Hybrid",
       achievements: [
-        "Architected and deployed 'Gyanasetu', a comprehensive school management platform with real-time tracking",
-        "Developed 'Unilink', a high-performance cross-platform chat application using React Native and Firebase",
-        "Optimized system performance by 40% through rigorous code refactoring and database indexing",
-        "Integrated complex authentication protocols and real-time data synchronization layers",
+        "Several freelancings in web and mobile domains",
+        "Direct client collaboration and system delivery",
       ],
     },
     {
-      title: "Multiple Deployments (Internships)",
-      company: "VARIOUS",
-      period: "2021 - 2023",
-      location: "Hybrid",
-      achievements: [
-        "Spearheaded 3+ month intensive deployments focused on mobile and web architecture",
-        "Designed and implemented path-finding algorithms in vanilla JS for educational gaming simulations",
-        "Collaborated with senior engineers to bridge hardware logic with digital interfaces",
-        "Mastered the 'Continuous Integration' pipeline for rapid feature deployment",
-      ],
-    },
-    {
-      title: "Continuous Learning Protocol",
-      company: "TOTAL_RUNTIME",
+      title: "Good at programming and mobile dev",
+      company: "Core Specialization",
       period: "2017 - 2026",
       location: "Global",
       achievements: [
-        "8+ years of systematic programming exploration across multiple paradigms",
-        "Built a strong foundation in digital logic, circuit analysis, and systems thinking",
-        "Developed 'WordCafe', a modern storytelling platform focusing on visual impact and technical rigor",
-        "Continuously optimizing personal tech stack to include advanced Electrical Engineering principles",
+        "Specialized in high-level programming logic",
+        "Expertise in mobile development and digital systems",
       ],
     },
   ]
@@ -48,9 +32,9 @@ export default function Experience() {
         <div className="space-y-12">
           <div className="section-heading">
             <p>Service Record</p>
-            <h2>Deployment_History</h2>
+            <h2>Field_Operations</h2>
             <p className="uppercase tracking-widest text-xs font-bold text-primary/80">
-              Technical Contributions & System Deployments
+              Technical Contributions & Freelance Deployments
             </p>
           </div>
 
