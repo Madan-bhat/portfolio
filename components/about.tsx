@@ -138,11 +138,6 @@ export default function About() {
               </div>
 
               <div className="space-y-6 relative">
-                <div className="absolute -right-4 top-0 hidden xl:block">
-                   <div className="h-1.5 w-1.5 bg-primary mb-1" />
-                   <span className="text-[8px] text-zinc-600 font-mono tracking-tighter">X: 953 Y: 299</span>
-                </div>
-
                 <div className="flex items-center gap-4 text-zinc-500 text-[10px] font-bold uppercase tracking-widest">
                   <span className="text-primary font-black">//</span> Field_Operations [Experience]
                 </div>
@@ -152,7 +147,7 @@ export default function About() {
                       <h4 className="text-lg font-black uppercase text-primary italic tracking-tighter group-hover:translate-x-1 transition-transform">[{exp.label}]</h4>
                       <span className="text-[10px] text-zinc-600 border border-white/5 px-2 py-0.5 bg-white/5 font-mono">{exp.period}</span>
                     </div>
-                    <p className="text-xs text-zinc-400 uppercase tracking-widest font-light">{exp.company} — {exp.title}</p>
+                    <p className="text-xs text-zinc-400 uppercase tracking-widest font-light">{exp.title}</p>
                   </div>
                 ))}
               </div>
