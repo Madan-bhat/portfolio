@@ -213,14 +213,13 @@ export default function Hero() {
         </Link>
       </motion.div>
 
-      {/* Base Dark Layer */}
-      <div className="absolute inset-0 bg-black -z-20" />
+      {/* NO BASE DARK LAYER - WE WANT TO SEE THE BACKGROUND */}
 
       {/* Spotlight Effect - Uses CSS variables set in CustomCursor - Hidden on Mobile */}
       <div
         className="pointer-events-none absolute inset-0 z-40 hidden md:block"
         style={{
-          background: `radial-gradient(800px circle at var(--cursor-x, 50%) var(--cursor-y, 50%), transparent 0%, rgba(0, 0, 0, calc(0.98 * var(--flicker, 1))) 100%)`,
+          background: `radial-gradient(800px circle at var(--cursor-x, 50%) var(--cursor-y, 50%), transparent 0%, rgba(0, 0, 0, calc(0.95 * var(--flicker, 1))) 100%)`,
         }}
       />
 
