@@ -196,21 +196,6 @@ export default function Hero() {
         )}
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2.6, duration: 1 }}
-        className="immersive-box hidden lg:flex group cursor-pointer z-50"
-      >
-        <Box className="h-10 w-10 text-primary group-hover:rotate-45 transition-transform duration-500" />
-        <div className="text-left">
-          <p className="text-[8px] uppercase tracking-widest text-zinc-500">Immersive_Mode</p>
-          <p className="text-lg font-black uppercase text-white">3D Version</p>
-          <p className="text-[8px] text-primary uppercase font-bold tracking-widest mt-2 flex items-center gap-2">
-            <span className="h-1 w-1 bg-primary rounded-full animate-ping" /> Available
-          </p>
-        </div>
-      </motion.div>
 
       <div className="absolute bottom-8 left-8 flex items-center gap-3 z-50">
         <div className="h-2 w-2 bg-primary rounded-full animate-pulse" />
