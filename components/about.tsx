@@ -199,17 +199,6 @@ export default function About() {
               </div>
             </div>
 
-            <div className="pt-12">
-               <div className="border border-white/10 p-6 space-y-4 relative group cursor-pointer overflow-hidden">
-                  <div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-
-               </div>
-               <div className="mt-8 text-right space-y-1">
-                 <p className="text-primary text-[10px] font-black uppercase tracking-widest italic">Danger: High</p>
-                 <p className="text-zinc-600 text-[8px] uppercase tracking-tighter font-mono">SYS. DIAGNOSTIC</p>
-                 <p className="text-primary text-[8px] uppercase tracking-widest font-black">Stable</p>
-               </div>
-            </div>
           </div>
 
         </div>
