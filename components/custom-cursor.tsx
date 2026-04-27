@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 
 type CursorState = {
   x: number
@@ -27,8 +27,12 @@ export default function CustomCursor() {
     label: "",
   })
 
+  // Ref to track if we were just active to handle exit transitions better
+  const wasActive = useRef(false)
+
   const updateCursor = useCallback((event: PointerEvent) => {
     const target = event.target as HTMLElement | null
+    // Specifically target the evidence panels and interactive elements
     const interactiveElement = target?.closest("a, button, input, textarea, [role='button'], .project-card, .evidence-panel") as HTMLElement | null
 
     let label = ""
@@ -36,13 +40,17 @@ export default function CustomCursor() {
     else if (target?.closest("a, button, [role='button']")) label = "EXECUTE"
     else if (target?.closest(".project-card, .evidence-panel")) label = "INSPECT_FILE"
 
+    // Set raw coordinates for CSS usage (high performance)
     document.documentElement.style.setProperty("--cursor-x", `${event.clientX}px`)
     document.documentElement.style.setProperty("--cursor-y", `${event.clientY}px`)
+    document.documentElement.style.setProperty("--cursor-x-int", Math.round(event.clientX).toString())
+    document.documentElement.style.setProperty("--cursor-y-int", Math.round(event.clientY).toString())
 
     if (interactiveElement) {
       const rect = interactiveElement.getBoundingClientRect()
       const style = window.getComputedStyle(interactiveElement)
 
+      wasActive.current = true
       setCursor((current) => ({
         ...current,
         x: rect.left + rect.width / 2,
@@ -55,6 +63,7 @@ export default function CustomCursor() {
         label,
       }))
     } else {
+      wasActive.current = false
       setCursor((current) => ({
         ...current,
         x: event.clientX,
@@ -79,7 +88,12 @@ export default function CustomCursor() {
     const out = () => setCursor((current) => ({ ...current, visible: false }))
     const over = () => setCursor((current) => ({ ...current, visible: true }))
 
-    window.addEventListener("pointermove", updateCursor)
+    const flickerInterval = setInterval(() => {
+      const flickerVal = Math.random() > 0.95 ? 0.5 : 1
+      document.documentElement.style.setProperty("--flicker", flickerVal.toString())
+    }, 100)
+
+    window.addEventListener("pointermove", updateCursor, { passive: true })
     window.addEventListener("pointerdown", down)
     window.addEventListener("pointerup", up)
     window.addEventListener("pointerover", over)
@@ -87,6 +101,7 @@ export default function CustomCursor() {
 
     return () => {
       document.documentElement.classList.remove("custom-cursor-ready")
+      clearInterval(flickerInterval)
       window.removeEventListener("pointermove", updateCursor)
       window.removeEventListener("pointerdown", down)
       window.removeEventListener("pointerup", up)
@@ -96,6 +111,13 @@ export default function CustomCursor() {
   }, [updateCursor])
 
   if (!cursor.visible) return null
+
+  // Refined easing for the shape-shifting effect
+  const transitionStyle = {
+    transitionProperty: "transform, width, height, border-radius, left, top",
+    transitionDuration: "0.25s",
+    transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)"
+  }
 
   return (
     <div
@@ -107,31 +129,29 @@ export default function CustomCursor() {
         top: -cursor.h / 2,
         width: cursor.w,
         height: cursor.h,
-        transition: "transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), width 0.3s cubic-bezier(0.23, 1, 0.32, 1), height 0.3s cubic-bezier(0.23, 1, 0.32, 1), border-radius 0.3s cubic-bezier(0.23, 1, 0.32, 1)"
+        ...transitionStyle
       }}
     >
-      {/* Container for Visual Elements */}
       <div className="relative w-full h-full flex items-center justify-center">
-
-        {/* The "Shape-Shifting" Frame */}
+        {/* Adaptive Frame */}
         <div
-          className={`absolute inset-0 border border-primary transition-all duration-300 ${cursor.active ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}
-          style={{ borderRadius: cursor.br }}
+          className={`absolute inset-0 border border-primary transition-all duration-300 ${cursor.active ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
+          style={{
+            borderRadius: cursor.br,
+            transition: "all 0.25s cubic-bezier(0.23, 1, 0.32, 1)"
+          }}
         >
-          {/* Internal Glow for active state */}
           <div className="absolute inset-0 bg-primary/5" style={{ borderRadius: cursor.br }} />
         </div>
 
-        {/* Tactical Crosshair (Visible when not active/hovered) */}
-        {!cursor.active && (
-          <div className="relative flex items-center justify-center scale-75">
-            <div className="w-1 h-1 bg-primary rounded-full" />
-            <div className="absolute w-6 h-6 border-t border-l border-primary/50 -translate-x-3 -translate-y-3" />
-            <div className="absolute w-6 h-6 border-b border-r border-primary/50 translate-x-3 translate-y-3" />
-          </div>
-        )}
+        {/* Reticle (Visible when not active) */}
+        <div className={`relative flex items-center justify-center transition-all duration-300 ${cursor.active ? "opacity-0 scale-50" : "opacity-100 scale-75"}`}>
+          <div className="w-1 h-1 bg-primary rounded-full" />
+          <div className="absolute w-6 h-6 border-t border-l border-primary/50 -translate-x-3 -translate-y-3" />
+          <div className="absolute w-6 h-6 border-b border-r border-primary/50 translate-x-3 translate-y-3" />
+        </div>
 
-        {/* Data Readout (Snaps to corner when active) */}
+        {/* Dynamic HUD Readout */}
         <div
           className={`absolute flex flex-col gap-0.5 font-mono text-[8px] tracking-tighter text-primary/80 whitespace-nowrap uppercase transition-all duration-300 ${
             cursor.active ? "-top-6 left-0" : "left-8 top-0"
@@ -149,13 +169,11 @@ export default function CustomCursor() {
         </div>
       </div>
 
-      {/* Trailing Crosshair Lines (Subtle - only when not active to avoid clutter) */}
-      {!cursor.active && (
-        <>
-          <div className="absolute top-1/2 left-[-100vw] w-[200vw] h-[0.5px] bg-primary/10 -translate-y-1/2" />
-          <div className="absolute left-1/2 top-[-100vh] h-[200vh] w-[0.5px] bg-primary/10 -translate-x-1/2" />
-        </>
-      )}
+      {/* Global Crosshairs (Hide when active on large elements to reduce visual noise) */}
+      <div className={`transition-opacity duration-500 ${cursor.active && cursor.w > 100 ? "opacity-0" : "opacity-100"}`}>
+        <div className="absolute top-1/2 left-[-100vw] w-[200vw] h-[0.5px] bg-primary/10 -translate-y-1/2" />
+        <div className="absolute left-1/2 top-[-100vh] h-[200vh] w-[0.5px] bg-primary/10 -translate-x-1/2" />
+      </div>
     </div>
   )
 }

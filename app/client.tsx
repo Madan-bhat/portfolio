@@ -15,7 +15,7 @@ export default function ClientLayout({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+    <ThemeProvider forcedTheme="dark" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
       <NoScriptStyles />
       <div className="relative flex min-h-screen flex-col overflow-hidden">
         <noscript>

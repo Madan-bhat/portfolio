@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useEffect, useCallback } from "react"
-import { ModeToggle } from "./mode-toggle"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -134,13 +133,10 @@ export default function Header() {
               )
             })}
           </div>
-          <div className="ml-4 h-8 w-[1px] bg-foreground/10 mx-2" />
-          <ModeToggle />
         </nav>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center md:hidden space-x-4">
-          <ModeToggle />
           <Button
             variant="ghost"
             size="icon"

@@ -3,21 +3,37 @@
 import { Box, ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+/**
+ * Highly optimized coordinate display using CSS counters
+ * to avoid React re-renders on mouse move.
+ */
+function CoordinateDisplay() {
+  return (
+    <div className="coordinate-display hidden md:flex z-50 pointer-events-none">
+      <div className="red-dot animate-glitch" />
+      <p className="font-mono flex gap-1">
+        <span>X: </span>
+        <span className="after:content-[var(--cursor-x-str)]" style={{
+          // @ts-ignore
+          "--cursor-x-str": "counter(x)",
+          counterReset: "x var(--cursor-x-int, 0)"
+        }} />
+        <span className="ml-2">Y: </span>
+        <span className="after:content-[var(--cursor-y-str)]" style={{
+          // @ts-ignore
+          "--cursor-y-str": "counter(y)",
+          counterReset: "y var(--cursor-y-int, 0)"
+        }} />
+      </p>
+    </div>
+  );
+}
 
 export default function Hero() {
   const [typedText, setTypewriter] = useState("");
   const fullText = "Subject: 18yo Electrical Engineer // Loc: Udupi, IN // Spec: Systems, Robotics, TypeScript.";
-
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   const [logs, setLogs] = useState<string[]>([]);
   const logMessages = [
@@ -37,16 +53,7 @@ export default function Hero() {
         const nextLog = logMessages[Math.floor(Math.random() * logMessages.length)];
         return [...prev.slice(-2), nextLog];
       });
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const [flicker, setFlicker] = useState(1);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFlicker(Math.random() > 0.95 ? 0.5 : 1);
-    }, 100);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -56,7 +63,7 @@ export default function Hero() {
       setTypewriter(fullText.slice(0, i));
       i++;
       if (i > fullText.length) clearInterval(interval);
-    }, 40);
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
@@ -120,7 +127,7 @@ export default function Hero() {
           <motion.h1
             variants={reveal}
             transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
-            className="surveillance-name text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] uppercase select-none"
+            className="surveillance-name text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] uppercase select-none animate-glitch-slow"
           >
             Madan <br /> Bhat
           </motion.h1>
@@ -168,15 +175,7 @@ export default function Hero() {
         <span className="text-[10px] mt-2 block font-mono">EVIDENCE_Mb.jpg</span>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 1 }}
-        className="coordinate-display hidden md:flex z-50"
-      >
-        <div className="red-dot animate-pulse" />
-        <p className="font-mono">X: {Math.round(mousePos.x)} Y: {Math.round(mousePos.y)}</p>
-      </motion.div>
+      <CoordinateDisplay />
 
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -187,18 +186,11 @@ export default function Hero() {
         {logs.map((log, index) => (
           <p key={index}>{log}</p>
         ))}
-        {logs.length === 0 && (
-          <>
-            <p>&gt;&gt; analyzing logic...</p>
-            <p>&gt;&gt; bug eliminated</p>
-            <p>&gt;&gt; system optimized</p>
-          </>
-        )}
       </motion.div>
 
 
       <div className="absolute bottom-8 left-8 flex items-center gap-3 z-50">
-        <div className="h-2 w-2 bg-primary rounded-full animate-pulse" />
+        <div className="h-2 w-2 bg-primary rounded-full animate-glitch" />
         <span className="text-[10px] uppercase tracking-widest font-bold text-zinc-500">Live Feed</span>
       </div>
 
@@ -217,26 +209,26 @@ export default function Hero() {
           className="text-primary/40 hover:text-primary transition-colors"
           aria-label="Scroll to about section"
         >
-          <ArrowDown className="h-6 w-6 animate-bounce" />
+          <ArrowDown className="h-6 w-6 animate-glitch" />
         </Link>
       </motion.div>
 
-      {/* Base Dark Layer - moved back to z-stack bottom */}
+      {/* Base Dark Layer */}
       <div className="absolute inset-0 bg-black -z-20" />
 
-      {/* Spotlight Effect - Dark Overlay with Hole */}
+      {/* Spotlight Effect - Uses CSS variables set in CustomCursor - Hidden on Mobile */}
       <div
-        className="pointer-events-none absolute inset-0 z-40 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-40 hidden md:block"
         style={{
-          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, transparent 10%, rgba(0, 0, 0, ${0.98 * flicker}) 70%)`,
+          background: `radial-gradient(800px circle at var(--cursor-x, 50%) var(--cursor-y, 50%), transparent 0%, rgba(0, 0, 0, calc(0.98 * var(--flicker, 1))) 100%)`,
         }}
       />
 
-      {/* Red Glow Light Source */}
+      {/* Red Glow Light Source - Hidden on Mobile - Larger and Softer */}
       <div
-        className="pointer-events-none absolute inset-0 z-30 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-30 hidden md:block"
         style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 51, 51, ${0.15 * flicker}), transparent 70%)`,
+          background: `radial-gradient(1000px circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(255, 51, 51, calc(0.12 * var(--flicker, 1))), rgba(255, 51, 51, 0) 70%)`,
         }}
       />
     </section>
