@@ -12,11 +12,11 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Education", href: "#education" },
-  { name: "Contact Me", href: "#contact" },
+  { name: "Terminal", href: "#home" },
+  { name: "Subject_Dossier", href: "#about" },
+  { name: "Evidence_Board", href: "#projects" },
+  { name: "Background", href: "#education" },
+  { name: "Inquiry", href: "#contact" },
 ]
 
 export default function Header() {
@@ -40,7 +40,7 @@ export default function Header() {
         if (rect.top <= 150 && rect.bottom >= 150) {
           // Map to the closest navbar item if it's not in the navbar
           const sectionId = allSections[i]
-          if (sectionId === "skills") return "experience"
+          if (sectionId === "skills") return "about"
           if (!sections.includes(sectionId)) return "home"
           return sectionId
         }
@@ -83,7 +83,7 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "bg-background/70 backdrop-blur-lg shadow-sm border-b border-border/50" : "bg-transparent",
+        scrolled ? "bg-background/90 backdrop-blur-md border-b border-primary/20 shadow-[0_0_20px_rgba(0,0,0,0.5)]" : "bg-transparent",
       )}
     >
       <div className="container flex h-16 items-center justify-between">
@@ -92,16 +92,16 @@ export default function Header() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2"
           >
-            <span className="text-2xl font-bold gradient-text">MB</span>
+            <div className="h-4 w-4 bg-primary animate-pulse" />
+            <span className="text-xl font-black uppercase tracking-tighter italic">MB_Archive</span>
           </motion.div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <div className="relative flex space-x-4 items-center">
+        <nav className="hidden md:flex items-center space-x-2">
+          <div className="relative flex items-center bg-foreground/5 p-1 border border-foreground/10">
             {navItems.map((item, index) => {
               const isActive = activeSection === item.href.substring(1)
 
@@ -113,25 +113,18 @@ export default function Header() {
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   className="relative"
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeSection"
-                      className="absolute inset-0 bg-primary/10 rounded-md -z-10"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
                   <Link
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
                     className={cn(
-                      "text-sm font-medium transition-colors px-3 py-2 rounded-md relative",
-                      isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground",
+                      "text-[10px] uppercase tracking-[0.2em] transition-all px-4 py-2 relative block",
+                      isActive ? "text-primary font-bold bg-primary/10 shadow-[inset_0_0_10px_rgba(var(--primary),0.1)]" : "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
                     )}
                   >
                     {item.name}
                     {isActive && (
                       <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                         layoutId="underline"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -141,6 +134,7 @@ export default function Header() {
               )
             })}
           </div>
+          <div className="ml-4 h-8 w-[1px] bg-foreground/10 mx-2" />
           <ModeToggle />
         </nav>
 

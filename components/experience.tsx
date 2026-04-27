@@ -82,43 +82,50 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-24 bg-zinc-950/20">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="space-y-12">
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Experience</h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              My professional journey and key accomplishments
+          <div className="section-heading">
+            <p>Service Record</p>
+            <h2>Employment_History</h2>
+            <p>
+              Deployment logs and technical contributions across verified environments.
             </p>
           </div>
 
-          <div className="space-y-8 mt-12">
+          <div className="space-y-4 mt-12 max-w-4xl mx-auto">
             {experiences.map((experience, index) => (
-              <div key={index} className="timeline-item">
-                <Card className="border-l-4 border-l-primary transition-all duration-300 hover:shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold">{experience.title}</h3>
-                        <p className="text-muted-foreground">{experience.company}</p>
+              <div key={index} className="relative pl-8 pb-12 group">
+                <div className="absolute left-0 top-1 h-2 w-2 bg-primary group-hover:animate-ping" />
+                <div className="absolute left-[3px] top-4 h-full w-[1px] bg-primary/20" />
+
+                <div className="bg-zinc-900/40 border border-zinc-800 p-6 transition-all hover:border-primary/50 group-hover:bg-zinc-900/60">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] text-primary font-bold uppercase tracking-widest">LOG_{String(index + 1).padStart(2, "0")}</span>
+                        <div className="h-[1px] w-4 bg-primary/30" />
                       </div>
-                      <div className="mt-2 md:mt-0 flex flex-col md:items-end">
-                        <Badge variant="outline" className="mb-1 md:mb-0">
-                          {experience.period}
-                        </Badge>
-                        <span className="text-sm text-muted-foreground">{experience.location}</span>
-                      </div>
+                      <h3 className="text-xl font-black uppercase italic tracking-tighter text-white">{experience.title}</h3>
+                      <p className="text-sm text-zinc-400 font-medium">{experience.company}</p>
                     </div>
-                    <ul className="mt-4 space-y-2">
-                      {experience.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0"></span>
-                          <span className="text-sm text-muted-foreground">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                    <div className="text-right">
+                      <span className="text-[10px] uppercase tracking-[0.2em] border border-primary/30 px-2 py-1 bg-primary/5 text-primary">
+                        {experience.period}
+                      </span>
+                      <p className="text-[10px] text-zinc-500 mt-2 uppercase tracking-widest">{experience.location}</p>
+                    </div>
+                  </div>
+
+                  <ul className="mt-6 space-y-3">
+                    {experience.achievements.map((achievement, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="text-primary font-bold text-xs mt-0.5">&gt;</span>
+                        <span className="text-xs text-zinc-400 uppercase tracking-widest leading-relaxed">{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>

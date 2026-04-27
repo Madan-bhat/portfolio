@@ -1,94 +1,239 @@
-import { Card, CardContent } from "@/components/ui/card";
+"use client";
+
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ChevronLeft, ChevronRight, LayoutGrid, StretchHorizontal } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import OpenSource from "./open-source";
 
 export default function Projects() {
+  const [view, setView] = useState<"slider" | "grid">("slider");
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const projects = [
     {
       title: "WordCafe - Landing Page",
-      description:
-        "WordCafe is a unique platform that makes sharing stories easy and engaging. Built with modern web technologies.",
+      description: "WordCafe is a unique platform that makes sharing stories easy and engaging. Built with modern web technologies.",
       tags: ["Next.js", "TypeScript", "TailwindCSS", "Shadcn UI"],
       codeLink: "https://github.com/Madan-Bhat/wordcafe",
       liveLink: "https://wordcafe.vercel.app",
+      type: "Web",
+      id: "01",
+      image: "/placeholder.svg?height=600&width=400",
     },
     {
       title: "Unilink",
-      description:
-        "Unilink is a real-time chat app built with Firebase and React Native, allowing users to connect instantly with an intuitive interface.",
+      description: "Unilink is a real-time chat app built with Firebase and React Native, allowing users to connect instantly with an intuitive interface.",
       tags: ["React Native", "Firebase", "Real-time Chat"],
       codeLink: "https://github.com/Madan-Bhat/unilink",
       liveLink: null,
+      type: "Mobile",
+      id: "02",
+      image: "/placeholder.svg?height=600&width=400",
     },
     {
       title: "Gyanasetu",
-      description:
-        "Gyanasetu simplifies school management with event organization, attendance tracking, and alerts for teachers and students.",
+      description: "Gyanasetu simplifies school management with event organization, attendance tracking, and alerts for teachers and students.",
       tags: ["Next.js", "TypeScript", "TailwindCSS", "Shadcn UI", "Magic UI"],
       codeLink: "https://github.com/Madan-Bhat/gyanasetu",
       liveLink: "https://gyanasetu-admin.vercel.app",
+      type: "Platform",
+      id: "03",
+      image: "/placeholder.svg?height=600&width=400",
     },
   ];
 
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === "left" ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="projects" className="py-20">
-      <div className="container px-4 md:px-6 mx-auto">
-        <div className="space-y-12">
-          <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              My Projects
+    <section id="projects" className="py-32 bg-black overflow-hidden relative">
+      <div className="container px-4 md:px-6 mx-auto mb-16 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
+          <div className="space-y-2">
+            <p className="text-[10px] uppercase tracking-[0.6em] text-primary font-black mb-4">Department of Intelligence</p>
+            <h2 className="evidence-board-title text-6xl md:text-[8rem] uppercase text-white leading-[0.8] tracking-tighter">
+              Evidence <br /> <span className="italic ml-12 md:ml-24 text-white/90">Board</span>
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Check out my latest work - a variety of projects from web
-              applications to mobile apps
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {projects.map((project, index) => (
-              <div key={index} className="project-card">
-                <Card className="overflow-hidden h-full flex flex-col">
-                  <CardContent className="project-content flex-1 flex flex-col p-5">
-                    <h3 className="text-lg font-bold">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-2 flex-1">
-                      {project.description}
-                    </p>
-                    <div className="project-tags mt-3">
-                      {project.tags.slice(0, 3).map((tag, i) => (
-                        <span key={i} className="project-tag">
-                          {tag}
-                        </span>
-                      ))}
+          <div className="flex flex-col items-end gap-6">
+            <div className="hidden xl:block h-32 w-64 bg-zinc-900/50 border border-white/5 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+              <div className="absolute top-2 left-2 flex items-center gap-2">
+                <div className="h-1.5 w-1.5 bg-primary animate-pulse" />
+                <span className="text-[8px] text-primary uppercase font-black tracking-widest">FEED_04 [ACTIVE]</span>
+              </div>
+              <div className="absolute bottom-2 right-2 text-[8px] text-zinc-600 font-mono">
+                SEC_GRID_99.2
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                <div className="h-16 w-16 border border-white/20 rounded-full" />
+                <div className="absolute h-px w-full bg-white/10" />
+                <div className="absolute v-px h-full w-px bg-white/10" />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="text-right">
+                <p className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Sector: Repository</p>
+                <p className="text-[10px] text-primary uppercase tracking-widest font-bold">Status: Decrypting</p>
+              </div>
+
+              <div className="view-toggle">
+                <button
+                  onClick={() => setView("slider")}
+                  className={`view-toggle-btn ${view === "slider" ? "active" : ""}`}
+                >
+                  Slider
+                </button>
+                <button
+                  onClick={() => setView("grid")}
+                  className={`view-toggle-btn ${view === "grid" ? "active" : ""}`}
+                >
+                  List
+                </button>
+              </div>
+
+              {view === "slider" && (
+                <div className="hidden md:flex gap-1">
+                  <button onClick={() => scroll("left")} className="slider-btn border-white/10 hover:border-primary/50">
+                    <ChevronLeft className="h-3 w-3" />
+                  </button>
+                  <button onClick={() => scroll("right")} className="slider-btn border-white/10 hover:border-primary/50">
+                    <ChevronRight className="h-3 w-3" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {view === "slider" ? (
+          <motion.div
+            key="slider"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="slider-container no-scrollbar pb-12"
+            ref={scrollRef}
+            style={{ overflowX: "auto", scrollSnapType: "x mandatory" }}
+          >
+            <div className="slider-track" style={{ minWidth: "max-content", paddingLeft: "10%", paddingRight: "10%" }}>
+              {projects.map((project) => (
+                <div key={project.id} className="evidence-panel group cursor-pointer border-white/5 bg-zinc-950" style={{ scrollSnapAlign: "start", flexBasis: "340px", height: "540px" }}>
+                  <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)]" />
+                    <div className="scanline-overlay" />
+                  </div>
+
+                  <div className="evidence-overlay h-full">
+                    <div className="flex justify-between items-start">
+                      <div className="space-y-1">
+                        <div className="h-8 w-px bg-primary/40" />
+                        <div className="h-px w-4 bg-primary/40" />
+                      </div>
+                      <span className="text-[9px] uppercase tracking-[0.3em] text-zinc-500 group-hover:text-primary transition-colors font-black">{project.type}</span>
                     </div>
-                    <div className="project-links mt-4">
-                      <Button size="sm" variant="outline" asChild>
-                        <Link
-                          href={project.codeLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="mr-1 h-4 w-4" /> Code
-                        </Link>
-                      </Button>
-                      {project.liveLink && (
-                        <Button size="sm" variant="outline" asChild>
-                          <Link
-                            href={project.liveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="mr-1 h-4 w-4" /> Live
-                          </Link>
+
+                    <div className="flex-1 flex items-center justify-center">
+                      <div className="relative h-48 w-48 flex items-center justify-center">
+                        <div className="absolute inset-0 border border-white/5 rounded-full rotate-45 group-hover:rotate-90 transition-transform duration-1000" />
+                        <div className="absolute inset-4 border border-white/5 rounded-full -rotate-45 group-hover:-rotate-90 transition-transform duration-1000" />
+                        <div className="h-2 w-2 bg-primary/20 rounded-full group-hover:scale-150 transition-transform" />
+
+                        <div className="evidence-open">
+                          <span className="text-[10px] font-black italic">Open_Case</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="evidence-footer space-y-4">
+                      <div className="flex items-end justify-between">
+                        <div className="space-y-1">
+                          <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold">Evidence #{project.id}</p>
+                          <h3 className="text-xl font-black uppercase italic tracking-tighter text-white/90 group-hover:text-white transition-colors">
+                            {project.title}
+                          </h3>
+                        </div>
+                        <div className="flex flex-col items-end">
+                          <div className="h-px w-8 bg-white/10 mb-1" />
+                          <div className="h-px w-4 bg-white/10" />
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                        <Button size="sm" variant="outline" asChild className="h-7 rounded-none border-white/10 text-[9px] uppercase tracking-widest px-3 hover:bg-white/5">
+                          <Link href={project.codeLink} target="_blank">Source</Link>
                         </Button>
-                      )}
+                        {project.liveLink && (
+                          <Button size="sm" variant="outline" asChild className="h-7 rounded-none border-white/10 text-[9px] uppercase tracking-widest px-3 hover:bg-white/5">
+                            <Link href={project.liveLink} target="_blank">Live</Link>
+                          </Button>
+                        )}
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+
+                  {/* Corner Brackets */}
+                  <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-white/10 group-hover:border-primary/50 transition-colors" />
+                  <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-white/10 group-hover:border-primary/50 transition-colors" />
+                  <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-white/10 group-hover:border-primary/50 transition-colors" />
+                  <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-white/10 group-hover:border-primary/50 transition-colors" />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="grid"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="container px-4 md:px-6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {projects.map((project) => (
+              <div key={project.id} className="bg-zinc-900/20 border border-white/5 p-8 flex flex-col gap-6 group hover:border-primary/40 transition-colors">
+                <div className="flex justify-between items-center text-[10px] uppercase tracking-widest text-primary font-black">
+                  <span>Exhibit #{project.id}</span>
+                  <span className="bg-primary/5 border border-primary/20 px-2 py-0.5">{project.type}</span>
+                </div>
+                <h3 className="text-2xl font-black uppercase italic tracking-tighter text-white group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-xs text-zinc-500 leading-relaxed uppercase tracking-[0.15em]">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-[8px] border border-white/5 px-2 py-1 text-zinc-600 uppercase tracking-widest">{tag}</span>
+                  ))}
+                </div>
+                <div className="flex gap-2 pt-6">
+                  <Button size="sm" variant="outline" asChild className="flex-1 rounded-none text-[10px] uppercase tracking-[0.2em] border-white/10 hover:border-primary/50 hover:bg-primary/5 h-10">
+                    <Link href={project.codeLink} target="_blank">Access_Source</Link>
+                  </Button>
+                  {project.liveLink && (
+                    <Button size="sm" variant="outline" asChild className="flex-1 rounded-none text-[10px] uppercase tracking-[0.2em] border-white/10 hover:border-primary/50 hover:bg-primary/5 h-10">
+                      <Link href={project.liveLink} target="_blank">Live_Feed</Link>
+                    </Button>
+                  )}
+                </div>
               </div>
             ))}
-          </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="container px-4 md:px-6 mx-auto mt-32">
+        <div className="max-w-2xl border-l-2 border-primary/40 pl-8 py-4 bg-primary/5">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-black mb-3">System Diagnostic: Optimal</p>
+          <p className="text-xs text-zinc-400 uppercase tracking-[0.2em] leading-loose italic">
+            All data points presented have been decrypted from verified sources. Subject demonstrates consistent output across various frameworks and environments. Verification of architectural integrity complete.
+          </p>
         </div>
       </div>
     </section>

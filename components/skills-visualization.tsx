@@ -1,11 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 type SkillLevel = "Beginner" | "Intermediate" | "Advanced" | "Expert"
@@ -19,409 +16,122 @@ interface Skill {
 
 interface SkillCategory {
   category: string
-  icon: React.ReactNode
-  color: string
   skills: Skill[]
 }
 
 export default function SkillsVisualization() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
+  const [activeCategory, setActiveCategory] = useState<string>("Frontend")
 
   const skillCategories: SkillCategory[] = [
     {
       category: "Frontend",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-6 w-6"
-        >
-          <path d="M12 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5.5" />
-          <path d="M16 19h6" />
-          <path d="M19 16v6" />
-          <path d="M12 15V9" />
-          <path d="m9 13 3 2 3-2" />
-        </svg>
-      ),
-      color: "bg-blue-500/10 text-blue-500",
       skills: [
-        {
-          name: "JavaScript",
-          level: "Expert",
-          percentage: 95,
-          description: "ES6+, DOM manipulation, async programming, closures, and functional concepts",
-        },
-        {
-          name: "TypeScript",
-          level: "Expert",
-          percentage: 90,
-          description: "Type systems, interfaces, generics, and advanced type manipulations",
-        },
-        {
-          name: "React.js",
-          level: "Expert",
-          percentage: 92,
-          description: "Hooks, context, state management, performance optimization, and custom hooks",
-        },
-        {
-          name: "HTML/CSS",
-          level: "Expert",
-          percentage: 90,
-          description: "Semantic HTML, CSS Grid, Flexbox, animations, and responsive design",
-        },
-        {
-          name: "Tailwind CSS",
-          level: "Advanced",
-          percentage: 85,
-          description: "Utility-first approach, customization, and component patterns",
-        },
+        { name: "JavaScript", level: "Expert", percentage: 95, description: "ES6+, DOM manipulation, async programming" },
+        { name: "TypeScript", level: "Expert", percentage: 90, description: "Type systems, interfaces, generics" },
+        { name: "React.js", level: "Expert", percentage: 92, description: "Hooks, context, state management" },
+        { name: "Tailwind CSS", level: "Advanced", percentage: 85, description: "Utility-first approach" },
       ],
     },
     {
       category: "Backend",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-6 w-6"
-        >
-          <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
-          <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
-          <line x1="6" x2="6" y1="6" y2="6" />
-          <line x1="6" x2="6" y1="18" y2="18" />
-        </svg>
-      ),
-      color: "bg-green-500/10 text-green-500",
       skills: [
-        {
-          name: "Node.js",
-          level: "Expert",
-          percentage: 90,
-          description: "Event loop, streams, async patterns, and performance optimization",
-        },
-        {
-          name: "PHP",
-          level: "Advanced",
-          percentage: 80,
-          description: "OOP, modern PHP practices, and framework integration",
-        },
-        {
-          name: "Laravel",
-          level: "Advanced",
-          percentage: 85,
-          description: "MVC architecture, Eloquent ORM, middleware, and service providers",
-        },
-        {
-          name: "Express.js",
-          level: "Expert",
-          percentage: 90,
-          description: "Routing, middleware, error handling, and API design",
-        },
-        {
-          name: "RESTful APIs",
-          level: "Expert",
-          percentage: 95,
-          description: "Design principles, authentication, rate limiting, and documentation",
-        },
+        { name: "Node.js", level: "Expert", percentage: 90, description: "Event loop, streams, async patterns" },
+        { name: "Laravel", level: "Advanced", percentage: 85, description: "MVC architecture, Eloquent ORM" },
+        { name: "Express.js", level: "Expert", percentage: 90, description: "Routing, middleware, API design" },
       ],
     },
     {
-      category: "Database",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-6 w-6"
-        >
-          <ellipse cx="12" cy="5" rx="9" ry="3" />
-          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-        </svg>
-      ),
-      color: "bg-amber-500/10 text-amber-500",
+      category: "Cloud",
       skills: [
-        {
-          name: "MySQL",
-          level: "Advanced",
-          percentage: 85,
-          description: "Query optimization, indexing, transactions, and stored procedures",
-        },
-        {
-          name: "PostgreSQL",
-          level: "Advanced",
-          percentage: 80,
-          description: "Advanced queries, JSON operations, and performance tuning",
-        },
-        {
-          name: "DynamoDB",
-          level: "Advanced",
-          percentage: 80,
-          description: "NoSQL design patterns, single-table design, and query optimization",
-        },
-        {
-          name: "MongoDB",
-          level: "Intermediate",
-          percentage: 75,
-          description: "Document modeling, aggregation pipeline, and indexing strategies",
-        },
-        {
-          name: "Redis",
-          level: "Advanced",
-          percentage: 80,
-          description: "Caching strategies, data structures, and pub/sub patterns",
-        },
-      ],
-    },
-    {
-      category: "Cloud & DevOps",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-6 w-6"
-        >
-          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-        </svg>
-      ),
-      color: "bg-purple-500/10 text-purple-500",
-      skills: [
-        {
-          name: "AWS",
-          level: "Advanced",
-          percentage: 85,
-          description: "Lambda, SQS, EventBridge, Step Functions, and serverless architecture",
-        },
-        {
-          name: "GitHub Actions",
-          level: "Advanced",
-          percentage: 85,
-          description: "CI/CD pipelines, workflow automation, and deployment strategies",
-        },
-        {
-          name: "Travis-CI",
-          level: "Intermediate",
-          percentage: 70,
-          description: "Build configuration, test automation, and deployment integration",
-        },
-        {
-          name: "Docker",
-          level: "Advanced",
-          percentage: 80,
-          description: "Containerization, multi-stage builds, and Docker Compose",
-        },
-        {
-          name: "CI/CD",
-          level: "Advanced",
-          percentage: 85,
-          description: "Continuous integration, deployment automation, and testing strategies",
-        },
-      ],
-    },
-    {
-      category: "Tools & Methodologies",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-6 w-6"
-        >
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-        </svg>
-      ),
-      color: "bg-rose-500/10 text-rose-500",
-      skills: [
-        {
-          name: "Git",
-          level: "Expert",
-          percentage: 90,
-          description: "Version control, branching strategies, and collaborative workflows",
-        },
-        {
-          name: "Agile",
-          level: "Advanced",
-          percentage: 85,
-          description: "Scrum, Kanban, sprint planning, and retrospectives",
-        },
-        {
-          name: "Scrum",
-          level: "Advanced",
-          percentage: 85,
-          description: "Sprint planning, daily standups, and team facilitation",
-        },
-        {
-          name: "JIRA",
-          level: "Advanced",
-          percentage: 80,
-          description: "Project tracking, workflow customization, and reporting",
-        },
-        {
-          name: "Figma",
-          level: "Intermediate",
-          percentage: 70,
-          description: "Design collaboration, prototyping, and developer handoff",
-        },
+        { name: "AWS", level: "Advanced", percentage: 85, description: "Lambda, SQS, EventBridge" },
+        { name: "GitHub Actions", level: "Advanced", percentage: 85, description: "CI/CD pipelines" },
+        { name: "Docker", level: "Advanced", percentage: 80, description: "Containerization" },
       ],
     },
   ]
 
-  const handleCategoryClick = (category: string) => {
-    setActiveCategory(activeCategory === category ? null : category)
-  }
-
   const getActiveCategorySkills = () => {
-    if (!activeCategory) return []
     return skillCategories.find((cat) => cat.category === activeCategory)?.skills || []
   }
 
-  const getSkillLevelColor = (level: SkillLevel) => {
-    switch (level) {
-      case "Beginner":
-        return "bg-blue-500"
-      case "Intermediate":
-        return "bg-green-500"
-      case "Advanced":
-        return "bg-amber-500"
-      case "Expert":
-        return "bg-rose-500"
-      default:
-        return "bg-gray-500"
-    }
-  }
-
   return (
-    <div className="space-y-8">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div className="space-y-12 max-w-5xl mx-auto">
+      <div className="flex flex-wrap gap-1 bg-zinc-900/50 p-1 border border-zinc-800">
         {skillCategories.map((category) => (
-          <motion.div
+          <button
             key={category.category}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => handleCategoryClick(category.category)}
+            onClick={() => setActiveCategory(category.category)}
             className={cn(
-              "cursor-pointer rounded-lg p-4 transition-all",
+              "px-6 py-3 text-[10px] uppercase tracking-[0.2em] font-black transition-all rounded-none",
               activeCategory === category.category
-                ? `${category.color} border-2 border-current shadow-lg`
-                : "bg-card hover:bg-card/80 border border-border",
+                ? "bg-primary text-white"
+                : "text-zinc-500 hover:text-white hover:bg-zinc-800",
             )}
           >
-            <div className="flex flex-col items-center text-center space-y-2">
-              <div className={cn("p-2 rounded-full", category.color)}>{category.icon}</div>
-              <h4 className="font-medium">{category.category}</h4>
-              <p className="text-xs text-muted-foreground">{category.skills.length} skills</p>
-            </div>
-          </motion.div>
+            {category.category}_Module
+          </button>
         ))}
       </div>
 
-      <AnimatePresence>
-        {activeCategory && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xl font-bold">
-                    {activeCategory} <span className="text-sm font-normal text-muted-foreground">Skills</span>
-                  </h3>
-                  <Badge variant="outline">
-                    {getActiveCategorySkills().length} {getActiveCategorySkills().length === 1 ? "skill" : "skills"}
-                  </Badge>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="space-y-8">
+          {getActiveCategorySkills().map((skill, index) => (
+            <div key={skill.name} className="space-y-3 group">
+              <div className="flex justify-between items-end">
+                <div className="space-y-1">
+                  <span className="text-[10px] text-primary font-bold uppercase tracking-widest">Skill_{String(index + 1).padStart(2, "0")}</span>
+                  <h4 className="text-lg font-black uppercase italic tracking-tighter text-white group-hover:text-primary transition-colors">
+                    {skill.name}
+                  </h4>
                 </div>
+                <span className="text-xs text-zinc-500 font-mono">{skill.percentage}%</span>
+              </div>
 
-                <div className="space-y-6">
-                  {getActiveCategorySkills().map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="space-y-2"
-                      onMouseEnter={() => setHoveredSkill(skill.name)}
-                      onMouseLeave={() => setHoveredSkill(null)}
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                          <h4 className="font-medium">{skill.name}</h4>
-                          <Badge variant="secondary" className="ml-2 text-xs">
-                            {skill.level}
-                          </Badge>
-                        </div>
-                        <span className="text-sm text-muted-foreground">{skill.percentage}%</span>
-                      </div>
+              <div className="h-1 w-full bg-zinc-900 overflow-hidden relative">
+                <motion.div
+                  className="absolute inset-y-0 left-0 bg-primary"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${skill.percentage}%` }}
+                  transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+              </div>
 
-                      <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                          className={cn("h-full rounded-full", getSkillLevelColor(skill.level))}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.percentage}%` }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                        />
-                      </div>
-
-                      <AnimatePresence>
-                        {hoveredSkill === skill.name && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="text-sm text-muted-foreground mt-1"
-                          >
-                            {skill.description}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {!activeCategory && (
-        <div className="text-center text-muted-foreground p-4 border border-dashed rounded-lg">
-          <p>Select a category above to view detailed skills</p>
+              <p className="text-[10px] text-zinc-500 uppercase tracking-[0.15em] leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity">
+                &gt;&gt; {skill.description}
+              </p>
+            </div>
+          ))}
         </div>
-      )}
+
+        <div className="bg-zinc-900/30 border border-zinc-800 p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+            <span className="text-8xl font-black italic">{activeCategory.slice(0, 1)}</span>
+          </div>
+
+          <div className="space-y-6 relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="h-10 w-10 border border-primary/30 bg-primary/5 flex items-center justify-center">
+                <span className="text-primary font-bold">!</span>
+              </div>
+              <div>
+                <h3 className="text-sm font-black uppercase tracking-widest text-white">Diagnostic_Report</h3>
+                <p className="text-[10px] text-primary uppercase tracking-widest">Status: Optimized</p>
+              </div>
+            </div>
+
+            <p className="text-xs text-zinc-400 leading-relaxed uppercase tracking-[0.1em]">
+              The following modules represent core technical competencies within the {activeCategory} sector.
+              Subject demonstrates high adaptive capacity and consistent logical output across diverse problem sets.
+            </p>
+          </div>
+
+          <div className="pt-8 flex items-center gap-2">
+            <div className="h-1.5 w-1.5 bg-primary animate-pulse" />
+            <span className="text-[10px] text-zinc-500 uppercase tracking-widest">Inventory_System_v4.2</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

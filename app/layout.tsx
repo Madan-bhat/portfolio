@@ -4,8 +4,16 @@ import "./globals.css";
 import { Analytics } from "@/components/analytics";
 import ClientLayout from "./client";
 import { Suspense } from "react";
+import { Mona_Sans as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://imadanbhat.vercel.app"),
   title: "Madan Bhat | Junior Software Engineer",
   description:
     "Portfolio of Madan Bhat, a Junior Software Engineer specializing in JavaScript, TypeScript, React.js, Node.js, Laravel, and AWS.",
@@ -66,11 +74,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Suspense>
-        <ClientLayout>{children}</ClientLayout>
-      </Suspense>
-      <Analytics />
-    </>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn("min-h-screen bg-background font-mono antialiased", fontSans.variable)}>
+        <Suspense>
+          <ClientLayout>{children}</ClientLayout>
+        </Suspense>
+        <Analytics />
+      </body>
+    </html>
   );
 }
