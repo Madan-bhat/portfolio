@@ -69,13 +69,14 @@ export default function Hero() {
     <section
       id="home"
       className="surveillance-hero relative flex min-h-screen flex-col justify-center overflow-hidden"
+      style={{ background: 'transparent' }}
     >
       {/* Corner HUD Elements */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="hud-corner left-8 top-8 text-xs font-mono uppercase tracking-widest text-zinc-500"
+        className="hud-corner left-8 top-8 text-xs font-mono uppercase tracking-widest text-zinc-500 z-50"
       >
         <p>CAM_04 [REC]</p>
         <p className="text-primary mt-1">SIGNAL_STRONG</p>
@@ -85,7 +86,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="hud-corner right-8 top-8 text-right text-xs font-mono uppercase tracking-widest text-zinc-500"
+        className="hud-corner right-8 top-8 text-right text-xs font-mono uppercase tracking-widest text-zinc-500 z-50"
       >
         <p>00:07:50:00</p>
         <p className="mt-1">ISO 800</p>
@@ -96,7 +97,7 @@ export default function Hero() {
         initial={{ x: -100 }}
         animate={{ x: 0 }}
         transition={{ type: "spring", damping: 20, delay: 1.5 }}
-        className="side-ribbon left-0 top-[20%] border-y border-white/10 bg-black/40 py-8 px-2 flex flex-col items-center gap-4 z-20"
+        className="side-ribbon left-0 top-[20%] border-y border-white/10 bg-black/40 py-8 px-2 flex flex-col items-center gap-4 z-50"
       >
         <span className="text-xl font-bold">W.</span>
         <span className="writing-vertical-rl rotate-180 uppercase text-[10px] tracking-[0.4em] font-bold">Honors</span>
@@ -156,7 +157,7 @@ export default function Hero() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.4, scale: 1 }}
         transition={{ delay: 2, duration: 1.5 }}
-        className="hud-panel evidence-polaroid hidden xl:block"
+        className="hud-panel evidence-polaroid hidden xl:block z-50"
       >
         <div className="h-40 w-full bg-zinc-900 border border-white/10 overflow-hidden relative group">
           <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors" />
@@ -171,7 +172,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 1 }}
-        className="coordinate-display hidden md:flex"
+        className="coordinate-display hidden md:flex z-50"
       >
         <div className="red-dot animate-pulse" />
         <p className="font-mono">X: {Math.round(mousePos.x)} Y: {Math.round(mousePos.y)}</p>
@@ -181,7 +182,7 @@ export default function Hero() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 2.4, duration: 1 }}
-        className="diagnostic-logs hidden xl:block font-mono"
+        className="diagnostic-logs hidden xl:block font-mono z-50"
       >
         {logs.map((log, index) => (
           <p key={index}>{log}</p>
@@ -199,7 +200,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.6, duration: 1 }}
-        className="immersive-box hidden lg:flex group cursor-pointer"
+        className="immersive-box hidden lg:flex group cursor-pointer z-50"
       >
         <Box className="h-10 w-10 text-primary group-hover:rotate-45 transition-transform duration-500" />
         <div className="text-left">
@@ -211,14 +212,12 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="absolute bottom-8 left-8 flex items-center gap-3">
+      <div className="absolute bottom-8 left-8 flex items-center gap-3 z-50">
         <div className="h-2 w-2 bg-primary rounded-full animate-pulse" />
         <span className="text-[10px] uppercase tracking-widest font-bold text-zinc-500">Live Feed</span>
       </div>
 
-      <div className="absolute bottom-8 right-8 text-right font-mono text-[8px] text-zinc-600 leading-loose">
-        <p>9063ème enquêteur sur cette affaire</p>
-        <p>SYS. DIAGNOSTIC</p>
+      <div className="absolute bottom-8 right-8 text-right font-mono text-[8px] text-zinc-600 leading-loose z-50">
         <p className="text-primary font-black uppercase tracking-widest">Stable</p>
       </div>
 
@@ -226,7 +225,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 3, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 md:block"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 md:block z-50"
       >
         <Link
           href="#about"
@@ -236,6 +235,9 @@ export default function Hero() {
           <ArrowDown className="h-6 w-6 animate-bounce" />
         </Link>
       </motion.div>
+
+      {/* Base Dark Layer - moved back to z-stack bottom */}
+      <div className="absolute inset-0 bg-black -z-20" />
 
       {/* Spotlight Effect - Dark Overlay with Hole */}
       <div

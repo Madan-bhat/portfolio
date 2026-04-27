@@ -202,14 +202,7 @@ export default function About() {
             <div className="pt-12">
                <div className="border border-white/10 p-6 space-y-4 relative group cursor-pointer overflow-hidden">
                   <div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  <Box className="h-10 w-10 text-primary relative z-10" />
-                  <div className="relative z-10">
-                    <p className="text-[8px] uppercase tracking-widest text-zinc-500 mb-1">Immersive_Mode</p>
-                    <p className="text-xl font-black uppercase italic tracking-tighter text-white leading-none">3D Version</p>
-                    <p className="text-[8px] text-primary uppercase font-bold tracking-widest mt-2 flex items-center gap-2">
-                      <span className="h-1 w-1 bg-primary rounded-full" /> Available
-                    </p>
-                  </div>
+
                </div>
                <div className="mt-8 text-right space-y-1">
                  <p className="text-primary text-[10px] font-black uppercase tracking-widest italic">Danger: High</p>
