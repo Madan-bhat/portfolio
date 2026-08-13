@@ -14,6 +14,7 @@ const navItems = [
   { name: "Terminal", href: "#home" },
   { name: "Subject_Dossier", href: "#about" },
   { name: "Evidence_Board", href: "#projects" },
+  { name: "Photo_Archive", href: "#photography" },
   { name: "Background", href: "#education" },
   { name: "Inquiry", href: "#contact" },
 ]

@@ -142,15 +142,15 @@
 }
 
 .surveillance-name:hover {
-  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  animation: glitch-subtle 3s ease-in-out both infinite;
 }
 
 .animate-glitch {
-  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  animation: glitch 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
 }
 
 .animate-glitch-slow {
-  animation: glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  animation: glitch-subtle 5s ease-in-out both infinite;
 }
 
 @keyframes glitch {
@@ -158,19 +158,36 @@
     transform: translate(0);
   }
   20% {
-    transform: translate(-2px, 2px);
+    transform: translate(-1px, 1px);
   }
   40% {
-    transform: translate(-2px, -2px);
+    transform: translate(-1px, -1px);
   }
   60% {
-    transform: translate(2px, 2px);
+    transform: translate(1px, 1px);
   }
   80% {
-    transform: translate(2px, -2px);
+    transform: translate(1px, -1px);
   }
   100% {
     transform: translate(0);
+  }
+}
+
+@keyframes glitch-subtle {
+  0%,
+  88%,
+  100% {
+    transform: translate(0);
+  }
+  90% {
+    transform: translate(-0.5px, 0.5px);
+  }
+  93% {
+    transform: translate(0.5px, -0.5px);
+  }
+  96% {
+    transform: translate(-0.5px, 0);
   }
 }
 
